@@ -1,6 +1,6 @@
 # vue-rooter-demo
 
-> "vue-router": "^2.2.0"
+> vue-router:2.2.0 + vue 2.0
 
 ## Build Setup
 
