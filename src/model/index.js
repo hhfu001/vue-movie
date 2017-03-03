@@ -17,45 +17,55 @@ class Model extends EventEmitter {
 
     getMovie(item, cb) { 
         
-        Vue.http.jsonp('http://api.douban.com/v2/movie/' + item, { count: 6 }).then((response) => { 
+       return Vue.http.jsonp('http://api.douban.com/v2/movie/' + item, { count: 6 }).then((response) => { 
             
             
-            this.emit('getMovie'+ item +':success', response);
+           this.emit('getMovie' + item + ':success', response);
+           
+           response.name = item;
 
             cb && cb(response);
+            
+            return Promise.resolve(response);
         })
     }
 
     getSubject(id, cb) { 
         
-        Vue.http.jsonp('http://api.douban.com/v2/movie/subject/' + id,).then((response) => { 
+        return Vue.http.jsonp('http://api.douban.com/v2/movie/subject/' + id,).then((response) => { 
             
             
             this.emit('getSubject:success', response);
 
             cb && cb(response);
+            
+            return Promise.resolve(response);
         })
 
     }
 
     getCelibrity(id, cb) { 
         
-        Vue.http.jsonp('http://api.douban.com/v2/movie/celebrity/' + id,).then((response) => { 
+        return Vue.http.jsonp('http://api.douban.com/v2/movie/celebrity/' + id,).then((response) => { 
             
             this.emit('getCelibrity:success', response);
 
             cb && cb(response);
+
+            return Promise.resolve(response);
         })
 
     }
 
     getSearch(val, cb) { 
         
-        Vue.http.jsonp('http://api.douban.com/v2/movie/search?q=' + val,).then((response) => { 
+        return Vue.http.jsonp('http://api.douban.com/v2/movie/search?q=' + val,).then((response) => { 
             
             this.emit('getSearch:success', response);
 
             cb && cb(response);
+
+            return Promise.resolve(response);
         })
 
     }
